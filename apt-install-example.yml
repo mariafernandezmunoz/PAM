@@ -1,4 +1,7 @@
 ---
 - name: Install the package "foo"
-  apt:
-    name: foo
+  hosts: all
+  tasks:
+    - name: Hello Message
+      apt:
+        name: foo
