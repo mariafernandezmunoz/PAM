@@ -4,3 +4,6 @@
     - name: Hello Message
       debug:
         msg: "Hello World!"
+    - name: Get username
+      debug:
+        msg: '{{ ansible_user }}'
