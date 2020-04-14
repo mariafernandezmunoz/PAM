@@ -13,6 +13,15 @@
         state: present
       delegate_to: localhost
         
+    - name: localhost ip?
+      debug: var=ansible_all_ipv4_addresses
+      delegate_to: localhost
+      
+    - name: localhost OS?
+      debug:
+        msg: "{{ hostvars[inventory_hostname].ansible_distribution }}"
+      delegate_to: localhost
+      
     - name: Get username
       debug:
         msg: '{{ ansible_user }}'
