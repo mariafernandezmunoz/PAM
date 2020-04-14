@@ -4,6 +4,14 @@
     - name: Hello Message
       debug:
         msg: "Hello World!"
+        
+    - name: install hvac pip package
+      become: yes
+      become_method: sudo
+      pip:
+        name: hvac
+        state: present
+        
     - name: Get username
       debug:
         msg: '{{ ansible_user }}'
