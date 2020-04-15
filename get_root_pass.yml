@@ -4,4 +4,4 @@
   tasks:
     - name: Get {{ ansible_hostname }} privileged credentials
       debug:
-        msg: "{{ lookup('hashi_vault', 'secret=securecreds/data/awx-debian') }}"
+        msg: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}') }}"
