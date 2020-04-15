@@ -1,6 +1,6 @@
 - name: Get privileged account credentials
   hosts: 
-    {{host_ip}}
+    "{{host_ip}}"
   tasks:
     - name: Get {{ host_ip }} privileged credentials
       debug:
