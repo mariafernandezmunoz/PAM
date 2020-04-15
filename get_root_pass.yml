@@ -1,5 +1,5 @@
 - name: Get privileged account credentials
-  hosts: all
+  hosts: {{ host_ip }}
   tasks:
     - name: Get {{ host_ip }} privileged credentials
       debug:
