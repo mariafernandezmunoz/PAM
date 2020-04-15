@@ -1,6 +1,6 @@
-- name: Get root password
+- name: Get privileged account credentials
   hosts: all
   tasks:
-    - name: Return all kv v2 secrets from a path
+    - name: Get {{ host_ip }} privileged credentials
       debug:
         msg: "{{ lookup('hashi_vault', 'secret=securecreds/data/awx-debian') }}"
