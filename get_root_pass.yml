@@ -2,6 +2,6 @@
   hosts: 
     "{{host_ip}}"
   tasks:
-    - name: Get {{ host_ip }} privileged credentials
+    - name: Get {{ ansible_hostname }} privileged credentials
       debug:
         msg: "{{ lookup('hashi_vault', 'secret=securecreds/data/awx-debian') }}"
