@@ -4,7 +4,7 @@
   tasks:
     - name: Save a secret on Vault
       uri:
-        url: "http://127.0.0.1:8200/v1/securecreds/data/prueba"
+        url: "http://192.168.0.16:8200/v1/securecreds/data/prueba"
         method: POST
         body: '{"pass":"holi"}'
         body_format: json
