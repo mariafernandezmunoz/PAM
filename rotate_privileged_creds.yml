@@ -1,0 +1,11 @@
+---
+- name: Rotar credenciales privilegiadas
+  hosts: localhost
+  tasks:
+    - name: Save a secret on Vault
+      hashivault_write:
+        secret: securecreds/hello
+        data:
+            username: hola
+            pass: hello
+    
