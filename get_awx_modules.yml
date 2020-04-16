@@ -4,14 +4,8 @@
   gather_facts: false
   tasks:
     - name: Get modules on awx module path
-      command: ls /usr/lib
+      command: ls /var/lib/awx/venv/ansible/bin
       
     - name: Get modules on awx module path
-      command: ls /var/lib/awx/venv/ansible
+      command:  /var/lib/awx/venv/ansible/bin/pip freeze
       
-      
-    - name: Get modules on awx module path
-      command: ls /usr/lib/python2.7/dist-packages/ansible/modules
-      
-    - name: Get modules on pip installation module path
-      command: ls /usr/local/lib/python2.7/dist-packages/ansible/modules
