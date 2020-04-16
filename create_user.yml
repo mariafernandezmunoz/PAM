@@ -2,10 +2,10 @@
 - hosts: "{{host_ip}}"
   gather_facts: false
   tasks:
-    - name: Add the user "{{username}}" to {{ansible_hostame}}
+    - name: Add the user "{{username}}" to "{{ansible_hostame}}"
       user:
         name: "{{username}}"
-        password: {{ password | password_hash('sha512') }}
+        password: "{{ password | password_hash('sha512') }}"
         
     - name: Expiring password for user "{{ username }}"
       shell: chage -d 0 "{{ username }}"
