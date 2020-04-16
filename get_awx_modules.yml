@@ -7,6 +7,10 @@
       command: ls /usr/lib
       
     - name: Get modules on awx module path
+      command: ls /var/lib/awx/venv/ansible
+      
+      
+    - name: Get modules on awx module path
       command: ls /usr/lib/python2.7/dist-packages/ansible/modules
       
     - name: Get modules on pip installation module path
