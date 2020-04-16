@@ -3,9 +3,12 @@
   hosts: localhost
   tasks:
     - name: Save a secret on Vault
-      hashivault_write:
-        secret: securecreds/hello
-        data:
-            username: hola
-            pass: hello
-    
+      uri:
+        url: "http://127.0.0.1:8200/v1/securecreds/data/prueba"
+        method: POST
+        body: '{"pass":"holi"}'
+        body_format: json
+        validate_certs: no
+        headers:
+          X-Vault-Token: "{{ client_token }}"
+      register: secret_result
