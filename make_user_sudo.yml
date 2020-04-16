@@ -2,7 +2,7 @@
 - hosts: "{{host_ip}}"
   become: yes
   vars:
-    sudoers: awxprueba
+    sudoers: "{{username}}"
   tasks:
     - name: Make sure we have a 'sudo' group
       group:
