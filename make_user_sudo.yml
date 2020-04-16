@@ -2,8 +2,7 @@
 - hosts: all
   become: yes
   vars:
-    sudoers:
-      - awxprueba
+    sudoers: awxprueba
   tasks:
     - name: Make sure we have a 'sudo' group
       group:
@@ -18,9 +17,11 @@
         line: '%sudo ALL=(ALL) NOPASSWD:ALL'
         validate: visudo -cf %s
 
-    - name: Add sudoers users to sudo group
+    - getent: database=passwd key="{{ sudoers }}"
+
+    - name: Add sudoers user to sudo group
       user:
-        name: "{{ item }}"
+        name: "{{ sudoers }}"
         groups: sudo
         append: yes
-      with_items: "{{ sudoers }}"
+
