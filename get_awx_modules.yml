@@ -1,0 +1,13 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Get modules on awx module path
+      command: ls /usr/local/bin
+      
+    - name: Get modules on awx module path
+      command: ls /usr/bin/python2.7/dist-packages/ansible/modules
+      
+    - name: Get modules on pip installation module path
+      command: ls /usr/local/bin/python2.7/dist-packages/ansible/modules
