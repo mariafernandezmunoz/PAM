@@ -8,4 +8,8 @@
       
     - name: Get modules on awx module path
       command:  /var/lib/awx/venv/ansible/bin/pip freeze
+    
+    - name: Usar hashivault
+      hashivault_status:
+        register: 'vault_status'
       
