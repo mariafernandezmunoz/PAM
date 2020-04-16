@@ -9,7 +9,7 @@
       become: yes
       become_method: sudo
       pip:
-        name: hvac
+        name: ansible-modules-hashivault
         state: present
       delegate_to: localhost
         
