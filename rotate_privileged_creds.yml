@@ -18,7 +18,8 @@
           X-Vault-Token: s.ntTcsG8swHI9Xdhw0KtXDKsv
           
     - name: Rotar contraseña de root
-      user: 
-        - name: "{{ansible_become_user}}"
-        - password: "{{ newpassword | password_hash('sha512') }}"
       become: yes
+      user: 
+          name: "{{ansible_become_user}}"
+          password: "{{ newpassword | password_hash('sha512') }}"
+      
