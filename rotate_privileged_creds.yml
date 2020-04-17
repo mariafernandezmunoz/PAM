@@ -2,15 +2,12 @@
 - name: Rotar credenciales privilegiadas
   hosts: all
   vars: 
-    current_password: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}') }}"
+    ansible_become_user: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}:username') }}"
+    ansible_become_password: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}:password') }}"
     newpassword: "{{ lookup('password', '/dev/null  length=12 chars=ascii_letters,digits,hexdigits,punctuation') }}"
   tasks:
   
-    - name: Get {{ ansible_hostname }} privileged credentials
-      debug:
-        msg: "{{current_password}}"
-
-    - name: Save a secret on Vault
+    - name: Guardar nueva contraseña en Vault
       uri:
         url: "http://192.168.0.16:8200/v1/securecreds/data/prueba"
         method: POST
@@ -19,3 +16,9 @@
         validate_certs: no
         headers:
           X-Vault-Token: s.ntTcsG8swHI9Xdhw0KtXDKsv
+          
+    - name: Rotar contraseña de root
+      user: 
+        - name: "{{ansible_become_user}}"
+        - password: "{{newpassword}}"
+      become: yes
