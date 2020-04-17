@@ -8,7 +8,7 @@
   tasks:
     - name: Get sudo username
       debug:
-        msg: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}') }}"
+        msg: "{{ lookup('hashi_vault', 'secret=securecreds/{{ ansible_hostname }}/data/password') }}"
         
     - name: Get sudo pass
       debug:
