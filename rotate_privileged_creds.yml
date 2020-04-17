@@ -7,7 +7,7 @@
     #ansible_become_password: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}:password') }}"
     #hello: "{{ lookup('hashi_vault', 'secret=securecreds/data/hola:prueba')}}"
     newpassword: "{{ lookup('password', '/dev/null chars=ascii_letters,digits,hexdigits,punctuation') }}"
-    prueba: 3333
+    prueba: gdgd3333
   tasks:
     #- name: Get sudo username
     #  uri:
