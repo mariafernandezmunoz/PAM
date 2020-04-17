@@ -8,7 +8,7 @@
   tasks:
     - name: Get sudo username
       uri:
-        url: "http://192.168.0.16:8200/v1/securecreds/data/awx-debian/username"
+        url: "http://192.168.0.16:8200/v1/securecreds/data/awx-debian"
         method: GET
         body_format: json
         validate_certs: no
