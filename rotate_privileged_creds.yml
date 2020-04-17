@@ -9,7 +9,7 @@
       uri:
         url: "http://192.168.0.16:8200/v1/securecreds/data/prueba"
         method: POST
-        body: '{"data": {"password":"newpassword"}}'
+        body: '{"data": {"password":""{{newpassword}}""}}'
         body_format: json
         validate_certs: no
         headers:
