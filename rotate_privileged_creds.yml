@@ -20,5 +20,5 @@
     - name: Rotar contraseña de root
       user: 
         - name: "{{ansible_become_user}}"
-        - password: "{{newpassword}}"
+        - password: "{{ newpassword | password_hash('sha512') }}"
       become: yes
