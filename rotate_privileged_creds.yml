@@ -43,6 +43,7 @@
       become: yes
       user: 
         name: awxprueba
+        update_password: always
         password: "{{ newpassword | password_hash('sha512') }}"
         
     - name: Resultado  
