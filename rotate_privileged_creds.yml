@@ -8,11 +8,11 @@
   tasks:
     - name: Get sudo username
       debug:
-        msg: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}:username') }}"
+        msg: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}') }}"
         
     - name: Get sudo pass
       debug:
-        msg: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}:password') }}"
+        msg: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}') }}"
         
    # - name: Guardar nueva contraseña en Vault
    #   uri:
