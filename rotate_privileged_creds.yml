@@ -2,8 +2,13 @@
 - name: Rotar credenciales privilegiadas
   hosts: all
   vars: 
+    current_password: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}') }}"
     newpassword: "{{ lookup('password', '/dev/null  length=12 chars=ascii_letters,digits,hexdigits,punctuation') }}"
   tasks:
+  
+    - name: Get {{ ansible_hostname }} privileged credentials
+      debug:
+        msg: current_password
 
     - name: Save a secret on Vault
       uri:
