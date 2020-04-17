@@ -1,20 +1,15 @@
 ---
 - name: Rotar credenciales privilegiadas
   hosts: all
+  vars: 
+    newpassword: "{{ lookup('password', '/dev/null  length=12 chars=ascii_letters,digits,hexdigits,punctuation') }}"
   tasks:
-    - name: Obtener una contraseña random
-      debug:
-        msg: "{{ lookup('password', '/dev/null  length=12 chars=ascii_letters,digits,hexdigits,punctuation') }}"
-      
-      
-     
-  
-  
+
     - name: Save a secret on Vault
       uri:
         url: "http://192.168.0.16:8200/v1/securecreds/data/prueba"
         method: POST
-        body: '{"data": {"pass":"holi"}}'
+        body: '{"data": {"password":"newpassword"}}'
         body_format: json
         validate_certs: no
         headers:
