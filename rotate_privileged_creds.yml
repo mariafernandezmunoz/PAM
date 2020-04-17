@@ -8,7 +8,7 @@
   
     - name: Get {{ ansible_hostname }} privileged credentials
       debug:
-        msg: current_password
+        msg: "{{current_password}}"
 
     - name: Save a secret on Vault
       uri:
