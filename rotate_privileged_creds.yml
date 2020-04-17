@@ -12,7 +12,7 @@
         
     - name: Get sudo pass
       debug:
-        msg: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}') }}"
+        msg: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}'/data) }}"
         
    # - name: Guardar nueva contraseña en Vault
    #   uri:
