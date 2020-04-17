@@ -4,7 +4,7 @@
   vars: 
     ansible_become_user: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}:username') }}"
     ansible_become_password: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}:password') }}"
-    newpassword: "{{ lookup('password', '/dev/null  length=12 chars=ascii_letters,digits,hexdigits,punctuation') }}"
+    newpassword: "{{ lookup('password', '/dev/null chars=ascii_letters,digits,hexdigits,punctuation') }}"
   tasks:
   
     - name: Guardar nueva contraseña en Vault
