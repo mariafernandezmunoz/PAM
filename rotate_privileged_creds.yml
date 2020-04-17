@@ -4,21 +4,22 @@
   vars: 
     #ansible_become_user: "{{ jsonVar | from_json | json_query('queue.[0].['color']')}}"
     #ansible_become_password: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}:password') }}"
+    hello: "{{ lookup('hashi_vault', 'secret=securecreds/data/prueba:password')}}"
     newpassword: "{{ lookup('password', '/dev/null chars=ascii_letters,digits,hexdigits,punctuation') }}"
   tasks:
-    - name: Get sudo username
-      uri:
-        url: "http://192.168.0.16:8200/v1/securecreds/data/awx-debian"
-        method: GET
-        body_format: json
-        validate_certs: no
-        headers:
-          X-Vault-Token: s.ntTcsG8swHI9Xdhw0KtXDKsv
-      register: prueba    
+    #- name: Get sudo username
+    #  uri:
+    #    url: "http://192.168.0.16:8200/v1/securecreds/data/awx-debian"
+    #    method: GET
+    #    body_format: json
+    #    validate_certs: no
+    #    headers:
+    #      X-Vault-Token: s.ntTcsG8swHI9Xdhw0KtXDKsv
+    #  register: prueba    
       
     - name: Resultado  
       debug:
-        msg: "{{prueba}}"
+        msg: "{{hello}}"
         
    # - name: Get sudo pass
    #   debug:
