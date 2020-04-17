@@ -4,7 +4,7 @@
   vars: 
     #ansible_become_user: "{{ jsonVar | from_json | json_query('queue.[0].['color']')}}"
     #ansible_become_password: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}:password') }}"
-    hello: "{{ lookup('hashi_vault', 'secret=securecreds/data/hola:prueba')}}"
+    #hello: "{{ lookup('hashi_vault', 'secret=securecreds/data/hola:prueba')}}"
     newpassword: "{{ lookup('password', '/dev/null chars=ascii_letters,digits,hexdigits,punctuation') }}"
   tasks:
     #- name: Get sudo username
