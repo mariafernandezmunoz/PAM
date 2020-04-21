@@ -7,7 +7,7 @@
         cmd: getent group sudo 
       
     - local_action: command echo "{{ item }}"
-      with_items: "{{ sudousers.stdout_lines }}"
+      with_items: "{{ sudousers.stdout_lines.split("a") }}"
       
     - name: 
       debug:
