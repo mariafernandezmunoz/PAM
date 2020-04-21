@@ -10,4 +10,4 @@
     - name: 
       debug:
         var: sudousers
-        msg: "{{ sudousers.stdout_lines.split(',') }}"
+        msg: "{{ sudousers.stdout.split(',') }}"
