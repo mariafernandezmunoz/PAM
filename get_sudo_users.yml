@@ -2,7 +2,7 @@
   hosts: all
   tasks:
     - name: Get list of sudo users
-      command: $ getent group sudo | cut -d: -f4
+      command: getent group sudo | cut -d: -f4
       register: sudousers
       
     - name: 
