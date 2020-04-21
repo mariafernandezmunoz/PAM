@@ -7,6 +7,7 @@
         cmd: getent group sudo | cut -d ':' -f4
      
     - name: Add the user 'james' with a bash shell, appending the group 'admins' and 'developers' to the user's groups
+      become: true
       user:
         name: "{{ item }}"
         groups: ''
