@@ -9,5 +9,5 @@
       
     - name: 
       debug:
-        var: sudousers
+        #var: sudousers
         msg: "{{ sudousers.stdout.split(',') }}"
