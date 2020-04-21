@@ -11,4 +11,5 @@
       
     - name: 
       debug:
-        msg: "{{ sudousers.stdout_lines.split(",")[0] }}"
+        var: sudousers
+     #   msg: "{{ sudousers.stdout_lines.split(",")[0] }}"
