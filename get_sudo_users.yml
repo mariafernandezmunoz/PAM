@@ -12,8 +12,4 @@
         name: "{{ item }}"
         groups: ''
       with_items: "{{ sudousers.stdout.split(',') }}"
-
-    - name: 
-      debug:
-        #var: sudousers
-        msg: "{{ sudousers.stdout.split(',') }}"
+      when: sudousers.stdout != ""
