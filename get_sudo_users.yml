@@ -9,4 +9,4 @@
       
     - name: 
       debug:
-        msg: sudousers
+        msg: "{{  sudousers.stdout_lines.split(":")[0] | lower }}"
