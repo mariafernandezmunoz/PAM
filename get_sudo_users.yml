@@ -5,11 +5,9 @@
       register: sudousers
       shell: 
         cmd: getent group sudo 
-      
-    - local_action: command echo "{{ item }}"
-      with_items: "{{ sudousers.stdout_lines.split('a') }}"
+     
       
     - name: 
       debug:
         var: sudousers
-     #   msg: "{{ sudousers.stdout_lines.split(",")[0] }}"
+        msg: "{{ sudousers.stdout_lines.split(',') }}"
