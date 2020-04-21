@@ -1,15 +1,17 @@
 - name: Get sudo users
   hosts: all
+  vars: 
+    - userlist: "{{ lookup('hashi_vault', 'secret=userlist/data/{{ ansible_hostname }}') }}"
   tasks:
     - name: Get list of sudo users
-      register: userlist
+      register: existingusers
       shell: 
         cmd: cut -d ':' -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d ':' -f1
      
     - name: Add the user 'james' with a bash shell, appending the group 'admins' and 'developers' to the user's groups
       debug: 
-        var: userlist.stdout 
+        var: existingusers.stdout 
         
     - name: Get {{ ansible_hostname }} user list
       debug:
-        msg: "{{ lookup('hashi_vault', 'secret=userlist/data/{{ ansible_hostname }}') }}"
+        var: userlist.data.list
