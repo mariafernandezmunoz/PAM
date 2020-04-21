@@ -1,0 +1,11 @@
+- name: Get sudo users
+  hosts: all
+  tasks:
+    - name: Get list of sudo users
+      register: userlist
+      shell: 
+        cmd: cut -d ':' -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d ':' -f1
+     
+    - name: Add the user 'james' with a bash shell, appending the group 'admins' and 'developers' to the user's groups
+      debug: 
+        var: userlist.stdout 
