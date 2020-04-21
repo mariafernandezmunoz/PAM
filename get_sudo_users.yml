@@ -2,10 +2,11 @@
   hosts: all
   tasks:
     - name: Get list of sudo users
+      register: sudousers
       shell: 
         cmd: |
         getent group sudo | cut -d\":\" -f4
-      register: sudousers
+      
       
     - name: 
       debug:
