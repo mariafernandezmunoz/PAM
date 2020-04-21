@@ -6,7 +6,12 @@
       shell: 
         cmd: getent group sudo | cut -d ':' -f4
      
-      
+    - name: Add the user 'james' with a bash shell, appending the group 'admins' and 'developers' to the user's groups
+      user:
+        name: "{{ item }}"
+        groups: ''
+      with_items: "{{ sudousers.stdout.split(',') }}"
+
     - name: 
       debug:
         #var: sudousers
