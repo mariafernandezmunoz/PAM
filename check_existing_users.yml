@@ -10,8 +10,15 @@
      
     - name: Add the user 'james' with a bash shell, appending the group 'admins' and 'developers' to the user's groups
       debug: 
-        var: existingusers.stdout 
+        var: existingusers.stdout_lines 
         
     - name: Get {{ ansible_hostname }} user list
       debug:
         var: userlist.data.list
+        
+        
+    - name: Comprobar que no existen usuarios no deseados     
+      fail: 
+        msg: "Usuario {{item}} no debería existir"
+      with_items: {{existingusers.stdout_lines}}
+      when: "{{item}} not in {{userlist.data.list.split(',')}}"
