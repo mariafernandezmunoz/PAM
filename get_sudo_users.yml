@@ -4,7 +4,7 @@
     - name: Get list of sudo users
       shell: 
         cmd: |
-        getent group sudo | cut -d ':' -f4
+        getent group sudo | cut -d\":\" -f4
       register: sudousers
       
     - name: 
