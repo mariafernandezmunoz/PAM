@@ -12,4 +12,4 @@
         
     - name: Get {{ ansible_hostname }} user list
       debug:
-        msg: "{{ lookup('hashi_vault', 'secret=userlist/data/{{ ansible_hostname }}') }}"
+        msg: "{{ lookup('hashi_vault', 'secret=userlist/data/{{ ansible_hostname }}:list') }}"
