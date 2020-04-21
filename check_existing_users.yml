@@ -9,3 +9,7 @@
     - name: Add the user 'james' with a bash shell, appending the group 'admins' and 'developers' to the user's groups
       debug: 
         var: userlist.stdout 
+        
+    - name: Get {{ ansible_hostname }} user list
+      debug:
+        msg: "{{ lookup('hashi_vault', 'secret=userlist/data/{{ ansible_hostname }}') }}"
