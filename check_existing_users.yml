@@ -20,5 +20,5 @@
     - name: Comprobar que no existen usuarios no deseados     
       fail: 
         msg: "Usuario {{item}} no debería existir"
-      with_items: {{existingusers.stdout_lines}}
+      with_items: "{{existingusers.stdout_lines}}"
       when: "{{item}} not in {{userlist.data.list.split(',')}}"
