@@ -19,6 +19,6 @@
         
     - name: prueba
       debug:
-        msg: "{{ {{item}} in {{userlist.data.list.split(',')}} }}" 
+        msg: "{{ item in lookup('vars', 'userlist' + data.list.split(',') }}" 
       with_items: "{{existingusers.stdout_lines}}"
 
