@@ -14,6 +14,12 @@
       shell: chage -d 0 "{{ username }}"
       
     - name: Añadir usuario a lista de usuarios de confianza
-      debug:
-        msg: "{{newuserlist}}"
+      uri:
+        url: "http://192.168.0.16:8200/v1/userlist/data/{{ ansible_hostname }}"
+        method: POST
+        body: '{"data": {"list":"{{newuserlist}}"}}'
+        body_format: json
+        validate_certs: no
+        headers:
+          X-Vault-Token: s.ntTcsG8swHI9Xdhw0KtXDKsv
         
