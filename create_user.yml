@@ -2,7 +2,7 @@
 - hosts: "{{host_ip}}"
   vars:
      userlist: "{{ lookup('hashi_vault', 'secret=userlist/data/{{ ansible_hostname }}') }}"
-     newuserlist: "{{ lookup('vars', userlist.data.list)}},{{username}}"
+     newuserlist: "{{userlist.data.list}},{{username}}"
   become: true
   tasks:
     - name: Crear usuario "{{username}}" en equipo "{{ansible_hostame}}"
