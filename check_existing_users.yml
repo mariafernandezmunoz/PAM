@@ -24,5 +24,5 @@
 
     - fail:
         msg: "{{item}}"
-      when: "{{ item in lookup('list', userlist.data.list.split(',')) }}" 
+      when: "{{ item not in lookup('list', userlist.data.list.split(',')) }}" 
       with_items: "{{existingusers.stdout_lines}}"
