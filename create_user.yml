@@ -1,12 +1,19 @@
 ---
 - hosts: "{{host_ip}}"
-  gather_facts: false
+  vars:
+     userlist: "{{ lookup('hashi_vault', 'secret=userlist/data/{{ ansible_hostname }}') }}"
+     newuserlist: "{{ lookup('list', userlist.data.list),{{username}}"
   become: true
   tasks:
-    - name: Add the user "{{username}}" to "{{ansible_hostame}}"
+    - name: Crear usuario "{{username}}" en equipo "{{ansible_hostame}}"
       user:
         name: "{{username}}"
         password: "{{ password | password_hash('sha512') }}"
         
     - name: Expiring password for user "{{ username }}"
       shell: chage -d 0 "{{ username }}"
+      
+    - name: Añadir usuario a lista de usuarios de confianza
+      debug:
+        msg: "{{newuserlist}}"
+        
