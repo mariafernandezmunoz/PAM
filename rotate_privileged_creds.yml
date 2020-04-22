@@ -7,7 +7,7 @@
     #ansible_become_password: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}:password') }}"
     #hello: "{{ lookup('hashi_vault', 'secret=securecreds/data/hola:prueba')}}"
     newpassword: "{{ lookup('password', '/dev/null chars=ascii_letters,digits,hexdigits,punctuation') }}"
-    prueba: "gdgd3333"
+    prueba: "Prueba2!"
   tasks:
     #- name: Get sudo username
     #  uri:
@@ -43,6 +43,6 @@
     - name: Rotar contraseña de root
       become: yes
       user: 
-        name: awxprueba
+        name: meri
         update_password: always
         password: "{{ prueba | password_hash('sha512') }}"
