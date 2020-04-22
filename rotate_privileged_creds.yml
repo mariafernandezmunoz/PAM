@@ -8,11 +8,24 @@
     #hello: "{{ lookup('hashi_vault', 'secret=securecreds/data/hola:prueba')}}"
     newpassword: "{{ lookup('password', '/dev/null chars=ascii_letters,digits,hexdigits,punctuation') }}"
     prueba: "Prueba2!"
+    complexpass: "{{newpassword}}"
   tasks: 
       
     - name: Resultado  
       debug:
         msg: "{{newpassword}}"
+        
+    - name: Resultado  
+      debug:
+        msg: "{{newpassword}}"
+        
+    - name: Resultado  
+      debug:
+        msg: "{{complexpass}}"
+        
+    - name: Resultado  
+      debug:
+        msg: "{{complexpass}}"
    
     - name: Resultado  
       debug:
@@ -23,13 +36,13 @@
       user: 
         name: meri
         update_password: always
-        password: "{{ newpassword | password_hash('sha512') }}"
+        password: "{{ complexpass | password_hash('sha512') }}"
         
     - name: Guardar nueva contraseña en Vault
       uri:
         url: "http://192.168.0.16:8200/v1/securecreds/data/hola"
         method: POST
-        body: '{"data": {"prueba":"{{newpassword}}"}}'
+        body: '{"data": {"prueba":"{{complexpass}}"}}'
         body_format: json
         validate_certs: no
         headers:
