@@ -29,7 +29,7 @@
       
     - name: Eliminar usuario
       user: 
-        name: "{{item}}
+        name: "{{item}}"
         remove: yes
       when: "{{ item not in lookup('list', userlist.data.list.split(',')) }}" 
       with_items: "{{existingusers.stdout_lines}}"
