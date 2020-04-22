@@ -17,8 +17,8 @@
         var: userlist.data.list
         
         
-    - name: Comprobar que no existen usuarios no deseados     
-      fail: 
-        msg: "Usuario {{item}} no debería existir"
+    - name: prueba
+      debug:
+        msg: "{{ 'awxprueba' in {{userlist.data.list.split(',')}}}}" 
       with_items: "{{existingusers.stdout_lines}}"
-      when: '"{{item}}" not in "{{userlist.data.list.split(',')}}"'
+
