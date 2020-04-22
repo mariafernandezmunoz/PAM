@@ -19,6 +19,6 @@
         
     - name: prueba
       debug:
-        msg: "{{ 'awxprueba' in {{userlist.data.list.split(',')}}}}" 
+        msg: "{{ {{item}} in {{userlist.data.list.split(',')}} }}" 
       with_items: "{{existingusers.stdout_lines}}"
 
