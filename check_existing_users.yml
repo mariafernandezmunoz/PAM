@@ -25,6 +25,7 @@
 
       
     - name: Eliminar usuario
+      become: yes
       user: 
         name: "{{item}}"
         state: absent
