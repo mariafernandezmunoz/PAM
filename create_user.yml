@@ -21,5 +21,5 @@
         body_format: json
         validate_certs: no
         headers:
-          X-Vault-Token: {{ vault_token }}
+          X-Vault-Token: "{{ vault_token }}"
         
