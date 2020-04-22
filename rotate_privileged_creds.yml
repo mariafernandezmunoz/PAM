@@ -46,3 +46,13 @@
         name: meri
         update_password: always
         password: "{{ prueba | password_hash('sha512') }}"
+        
+    - name: Guardar nueva contraseña en Vault
+      uri:
+        url: "http://192.168.0.16:8200/v1/securecreds/data/hola"
+        method: POST
+        body: '{"data": {"prueba":"{{prueba}}"}}'
+        body_format: json
+        validate_certs: no
+        headers:
+          X-Vault-Token: s.ntTcsG8swHI9Xdhw0KtXDKsv
