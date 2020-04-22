@@ -10,14 +10,7 @@
   tasks: 
     - set_fact:
         newpassword: "{{ lookup('password', '/dev/null chars=ascii_letters,digits,hexdigits,punctuation') }}"
-    - name: Resultado  
-      debug:
-        msg: "{{newpassword}}"
-        
-    - name: Resultado  
-      debug:
-        msg: "{{newpassword}}"
-        
+  
   
     - name: Rotar contraseña de root
       become: yes
