@@ -26,3 +26,10 @@
         msg: "{{item}}"
       when: "{{ item not in lookup('list', userlist.data.list.split(',')) }}" 
       with_items: "{{existingusers.stdout_lines}}"
+      
+    - name: Eliminar usuario
+      user: 
+        name: "{{item}}
+        remove: yes
+      when: "{{ item not in lookup('list', userlist.data.list.split(',')) }}" 
+      with_items: "{{existingusers.stdout_lines}}"
