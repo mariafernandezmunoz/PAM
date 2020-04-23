@@ -1,0 +1,12 @@
+---
+- name: Configuración de grabación de sesiones de sudo
+  hosts: all
+
+  tasks: 
+    - name:
+      become: yes
+      apt: 
+        name: tlog 
+        state: present
+
+  
