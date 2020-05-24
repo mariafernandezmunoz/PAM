@@ -10,7 +10,7 @@
         name: "{{username}}"
         password: "{{ password | password_hash('sha512') }}"
         
-    - name: Expiring password for user "{{ username }}"
+    - name: Configurar expiración inmediata de contraseña de usuario "{{ username }}"
       shell: chage -d 0 "{{ username }}"
       
     - name: Añadir usuario a lista de usuarios de confianza
