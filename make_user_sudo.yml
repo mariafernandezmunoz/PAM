@@ -15,7 +15,7 @@
         dest: /etc/sudoers
         state: present
         regexp: '^%sudo'
-        line: '%sudo ALL=(ALL)'
+        line: '%sudo ALL=(ALL) NOPASSWD:ALL'
         validate: visudo -cf %s
 
     - name: Comprobar que existe el usuario en el equipo.
