@@ -3,23 +3,25 @@
   become: yes
   vars:
     sudoers: "{{username}}"
+    
   tasks:
-    - name: Make sure we have a 'sudo' group
+    - name: Comprobar que existe el grupo de administración
       group:
         name: sudo
         state: present
 
-    - name: Allow 'sudo' group to have passwordless sudo
+    - name: Garantizar permisos de administración
       lineinfile:
         dest: /etc/sudoers
         state: present
         regexp: '^%sudo'
-        line: '%sudo ALL=(ALL) NOPASSWD:ALL'
+        line: '%sudo ALL=(ALL)'
         validate: visudo -cf %s
 
-    - getent: database=passwd key="{{ sudoers }}"
+    - name: Comprobar que existe el usuario en el equipo.
+      getent: database=passwd key="{{ sudoers }}"
 
-    - name: Add sudoers user to sudo group
+    - name: Añadir usuario al grupo de administración
       user:
         name: "{{ sudoers }}"
         groups: sudo
