@@ -1,12 +1,13 @@
-- name: Get sudo users
+- name: Revocación de privilegios
   hosts: all
   tasks:
-    - name: Get list of sudo users
+  
+    - name: Obtener lista de usuarios de administración
       register: sudousers
       shell: 
         cmd: getent group sudo | cut -d ':' -f4
      
-    - name: Add the user 'james' with a bash shell, appending the group 'admins' and 'developers' to the user's groups
+    - name: Eliminar usuarios de grupo de administración
       become: true
       user:
         name: "{{ item }}"
