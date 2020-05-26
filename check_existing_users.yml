@@ -1,30 +1,27 @@
-- name: Get sudo users
+- name: Detección de cuentas
   hosts: all
   vars: 
     - userlist: "{{ lookup('hashi_vault', 'secret=userlist/data/{{ ansible_hostname }}') }}"
   tasks:
-    - name: Get list of sudo users
+    - name: Obtener lista de usuarios
       register: existingusers
       shell: 
         cmd: cut -d ':' -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d ':' -f1
      
-    - name: Add the user 'james' with a bash shell, appending the group 'admins' and 'developers' to the user's groups
+    - name: Mostrar lista de usuarios existentes en el equipo
       debug: 
         var: existingusers.stdout_lines 
         
-    - name: Get {{ ansible_hostname }} user list
+    - name: Mostrar lista de usuarios de confianza en equipo {{ ansible_hostname }} 
       debug:
         var: userlist.data.list
-        
         
     - name: prueba
       debug:
         msg: "{{ item in lookup('list', userlist.data.list.split(',')) }}" 
       with_items: "{{existingusers.stdout_lines}}"
 
-
-      
-    - name: Eliminar usuario
+    - name: Eliminar usuario no registrado
       become: yes
       user: 
         name: "{{item}}"
@@ -34,6 +31,6 @@
       with_items: "{{existingusers.stdout_lines}}"
       
     - fail:
-        msg: "{{item}}"
+        msg: El usuario "{{item}}" no es de confianza.
       when: "{{ item not in lookup('list', userlist.data.list.split(',')) }}" 
       with_items: "{{existingusers.stdout_lines}}"
