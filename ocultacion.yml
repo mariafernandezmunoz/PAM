@@ -2,9 +2,9 @@
   hosts: all
   vars: 
     - password: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}') }}"
-    - ansible_become_password: "{{password.data.password}}"
+    - hola: "{{password.data.password}}"
   tasks:      
   
     - name: Mostrar contraseña {{ ansible_hostname }} 
       debug:
-        var: ansible_become_password
+        var: hola
