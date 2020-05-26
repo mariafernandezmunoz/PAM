@@ -15,11 +15,6 @@
     - name: Mostrar lista de usuarios de confianza en equipo {{ ansible_hostname }} 
       debug:
         var: userlist.data.list
-        
-    - name: prueba
-      debug:
-        msg: "{{ item in lookup('list', userlist.data.list.split(',')) }}" 
-      with_items: "{{existingusers.stdout_lines}}"
 
     - name: Eliminar usuario no registrado
       become: yes
