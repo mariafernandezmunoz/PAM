@@ -1,0 +1,14 @@
+- name: Admin history
+  hosts: all
+  tasks:
+  - name: Obtener lista de usuarios
+      register: existingusers
+      shell: 
+        cmd: cut -d ':' -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d ':' -f1
+  
+  - name: Asegurar que no se puede eliminar el historial
+    file:
+      path: ~${{item}}/.bash_history
+      attr: +i
+    with_items: "{{existingusers.stdout_lines}}"
+    
