@@ -1,0 +1,8 @@
+- name: Ocultación
+  hosts: all
+  vars: 
+    - password: "{{ lookup('hashi_vault', 'secret=securecreds/data/{{ ansible_hostname }}') }}"
+  tasks:      
+    - name: Mostrar contraseña {{ ansible_hostname }} 
+      debug:
+        var: password.data
