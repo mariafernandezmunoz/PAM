@@ -10,7 +10,7 @@
     become: true
     become_user: {{item}}
     file:
-      path: {{ansible_env.HOME}}/.bash_history
+      path: "{{ansible_env.HOME}}/.bash_history"
       attr: +i
     with_items: "{{existingusers.stdout_lines}}"
    
