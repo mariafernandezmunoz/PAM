@@ -12,16 +12,14 @@
       path: "/home/{{item}}/.bash_history"
       attr: +i
     with_items: "{{existingusers.stdout_lines}}"
-  
-  - name: Obtener historial de administración
-    register: historial
-    shell: 
-      cmd: chsh -s /bin/bash
+ 
       
   - name: Obtener historial de administración
     register: historial
     shell: 
       cmd: history
+    args:
+     executable: /bin/bash
         
   - name: Mostrar historial
     debug: 
