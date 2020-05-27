@@ -16,6 +16,11 @@
   - name: Obtener historial de administración
     register: historial
     shell: 
+      cmd: chsh -s /bin/bash
+      
+  - name: Obtener historial de administración
+    register: historial
+    shell: 
       cmd: history
         
   - name: Mostrar historial
