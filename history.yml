@@ -14,11 +14,11 @@
     with_items: "{{existingusers.stdout_lines}}"
   
   - name: Obtener historial de administración
-      register: historial
-      shell: 
-        cmd: history | grep 'sudo'
+    register: historial
+    shell: 
+      cmd: history | grep 'sudo'
         
   - name: Mostrar historial
-      debug: 
-        var: historial 
+    debug: 
+      var: historial 
    
