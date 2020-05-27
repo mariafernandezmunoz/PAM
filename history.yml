@@ -16,7 +16,7 @@
   - name: Obtener historial de administración
     register: historial
     shell: 
-      cmd: history | grep 'sudo'
+      cmd: history
         
   - name: Mostrar historial
     debug: 
