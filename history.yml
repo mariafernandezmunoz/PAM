@@ -8,7 +8,7 @@
   
   - name: Asegurar que no se puede eliminar el historial
     become: true
-    become_user: {{item}}
+    become_user: "{{item}}"
     file:
       path: "{{ansible_env.HOME}}/.bash_history"
       attr: +i
