@@ -1,8 +1,17 @@
 - name: Detección de cuentas
   hosts: all
+  pre_tasks:
+    - name: Timestamp de inicio
+      debug:
+        var: ansible_date_time.date
+  post_tasks:
+    - name: Timestamp de final
+      debug:
+        var: ansible_date_time.date
   vars: 
     - userlist: "{{ lookup('hashi_vault', 'secret=userlist/data/{{ ansible_hostname }}') }}"
   tasks:
+    
     - name: Obtener lista de usuarios
       register: existingusers
       shell: 
