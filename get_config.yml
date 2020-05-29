@@ -1,0 +1,12 @@
+  ---
+- hosts: all
+  become: yes
+    
+  tasks:
+    - name: return motd to registered var
+      command: cat /etc/ansible/ansible.cfg
+      register: configuracion
+      
+    - name: Mostrar configuracion
+      debug: 
+        var: configuracion
